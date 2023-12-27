@@ -28,6 +28,7 @@ BuildRequires:	libsodium-devel >= 0.4.5
 BuildRequires:	libstdc++-devel >= 6:8
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-progs
+BuildRequires:	linux-libc-headers >= 7:2.6.10
 BuildRequires:	openldap-devel
 BuildRequires:	pkgconfig
 BuildRequires:	polkit-devel
