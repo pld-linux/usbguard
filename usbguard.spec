@@ -118,8 +118,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGELOG.md README.adoc
 %dir %{_sysconfdir}/usbguard
 %dir %{_sysconfdir}/usbguard/IPCAccessControl.d
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usbguard/rules.conf
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usbguard/usbguard-daemon.conf
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usbguard/rules.conf
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usbguard/usbguard-daemon.conf
 %attr(755,root,root) %{_bindir}/usbguard
 %attr(755,root,root) %{_bindir}/usbguard-rule-parser
 %attr(755,root,root) %{_sbindir}/usbguard-daemon
