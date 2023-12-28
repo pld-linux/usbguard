@@ -137,6 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/usbguard-daemon.8*
 %{_mandir}/man8/usbguard-dbus.8*
 %{_datadir}/polkit-1/actions/org.usbguard1.policy
+%dir %attr(751,root,root) /var/log/usbguard
 
 %files libs
 %defattr(644,root,root,755)
