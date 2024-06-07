@@ -5,19 +5,18 @@
 
 Summary:	Software framework for implementing USB device authorization policies
 Name:		usbguard
-Version:	1.1.2
+Version:	1.1.3
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://github.com/USBGuard/usbguard/releases/download/%{name}-%{version}/usbguard-%{version}.tar.gz
-# Source0-md5:	3c9478e17bac575ff51b1d746e72f25c
-Patch0:		gcc13.patch
+# Source0-md5:	fc4d8d603cd6eecd8b6d0a50f492228e
 URL:		https://usbguard.github.io/
 BuildRequires:	PEGTL-devel
 BuildRequires:	asciidoc
 BuildRequires:	audit-libs-devel >= 2.7.7
 BuildRequires:	dbus-devel
-BuildRequires:	glib2-devel
+BuildRequires:	glib2-devel >= 1:2.46
 %ifnarch %arch_with_atomics64
 BuildRequires:	libatomic-devel
 %endif
@@ -38,6 +37,7 @@ BuildRequires:	rpmbuild(macros) >= 2.025
 BuildRequires:	umockdev-devel >= 0.8.0
 Requires:	%{name}-libs%{?_isa} = %{version}-%{release}
 Requires:	audit-libs >= 2.7.7
+Requires:	glib2 >= 1:2.46
 Requires:	libcap-ng >= 0.7.0
 Requires:	libseccomp >= 2.0.0
 %{?with_systemd:Requires:	systemd-units >= 38}
@@ -78,7 +78,6 @@ Static usbguard library.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure \
