@@ -4,11 +4,13 @@
 %bcond_without	systemd		# systemd units
 
 Summary:	Software framework for implementing USB device authorization policies
+Summary(pl.UTF-8):	Szkielet programowy do implementowania polityk autoryzacji urządzeń USB
 Name:		usbguard
 Version:	1.1.3
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
+#Source0Download: https://github.com/USBGuard/usbguard/releases
 Source0:	https://github.com/USBGuard/usbguard/releases/download/%{name}-%{version}/usbguard-%{version}.tar.gz
 # Source0-md5:	fc4d8d603cd6eecd8b6d0a50f492228e
 URL:		https://usbguard.github.io/
@@ -49,8 +51,16 @@ authorization policies (what kind of USB devices are authorized) as
 well as method of use policies (how a USB device may interact with the
 system). Simply put, it is a USB device allowlisting tool.
 
+%description -l pl.UTF-8
+USBGuard to szkielet programowy do implementowania polityk autoryzacji
+urządzeń USB (jakie rodzaje urządzeń USB są autoryzowane), oraz metod
+użycia polityk (jak urządzenie USB może współpracować z systemem).
+Krótko mówiąc, jest to urządzenie do tworzenia listy dopuszczającej
+dla urządzeń USB.
+
 %package libs
 Summary:	usbguard library
+Summary(pl.UTF-8):	Biblioteka usbguard
 Group:		Libraries
 Requires:	libqb >= 0.16.0
 Requires:	libsodium >= 0.4.5
@@ -60,21 +70,32 @@ Requires:	umockdev >= 0.8.0
 %description libs
 usbguard library.
 
+%description libs -l pl.UTF-8
+Biblioteka usbguard.
+
 %package devel
 Summary:	Header files for the usbguard library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki usbguard
 Group:		Development/Libraries
 Requires:	%{name}-libs%{?_isa} = %{version}-%{release}
 
 %description devel
 Header files for usbguard library.
 
+%description devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki usbguard.
+
 %package static
 Summary:	Static usbguard library
+Summary(pl.UTF-8):	Statyczna biblioteka usbguard
 Group:		Development/Libraries
 Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
 
 %description static
 Static usbguard library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka usbguard.
 
 %prep
 %setup -q
@@ -92,6 +113,7 @@ Static usbguard library.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
