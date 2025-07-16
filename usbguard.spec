@@ -6,13 +6,13 @@
 Summary:	Software framework for implementing USB device authorization policies
 Summary(pl.UTF-8):	Szkielet programowy do implementowania polityk autoryzacji urządzeń USB
 Name:		usbguard
-Version:	1.1.3
-Release:	2
+Version:	1.1.4
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 #Source0Download: https://github.com/USBGuard/usbguard/releases
 Source0:	https://github.com/USBGuard/usbguard/releases/download/%{name}-%{version}/usbguard-%{version}.tar.gz
-# Source0-md5:	fc4d8d603cd6eecd8b6d0a50f492228e
+# Source0-md5:	79150eaff88eec1ce0d8b362089d1cbf
 URL:		https://usbguard.github.io/
 BuildRequires:	PEGTL-devel
 BuildRequires:	asciidoc
@@ -106,7 +106,7 @@ Statyczna biblioteka usbguard.
 	%{__enable_disable static_libs static} \
 	%{__enable_disable systemd} \
 	--with-bash-completion-dir="%{bash_compdir}" \
-	--with-bundled-catch \
+	--disable-catch \
 	--with-ldap
 
 %{__make}
@@ -148,6 +148,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with systemd}
 %{systemdunitdir}/usbguard.service
 %{systemdunitdir}/usbguard-dbus.service
+%{systemdtmpfilesdir}/usbguard.conf
 %endif
 %{bash_compdir}/usbguard
 %{_datadir}/dbus-1/system.d/org.usbguard1.conf
