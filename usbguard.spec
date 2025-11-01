@@ -7,7 +7,7 @@ Summary:	Software framework for implementing USB device authorization policies
 Summary(pl.UTF-8):	Szkielet programowy do implementowania polityk autoryzacji urządzeń USB
 Name:		usbguard
 Version:	1.1.4
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Applications/System
 #Source0Download: https://github.com/USBGuard/usbguard/releases
@@ -113,6 +113,7 @@ Statyczna biblioteka usbguard.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/usbguard/rules.d
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -124,6 +125,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %{?with_systemd:%systemd_post usbguard.service usbguard-dbus.service}
+if [ "$1" = "1" ]; then
+	%{_bindir}/usbguard generate-policy > /etc/usbguard/rules.conf
+fi
 
 %preun
 %{?with_systemd:%systemd_preun usbguard.service usbguard-dbus.service}
@@ -139,6 +143,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGELOG.md README.adoc
 %dir %{_sysconfdir}/usbguard
 %dir %{_sysconfdir}/usbguard/IPCAccessControl.d
+%dir %{_sysconfdir}/usbguard/rules.d
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usbguard/rules.conf
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usbguard/usbguard-daemon.conf
 %attr(755,root,root) %{_bindir}/usbguard
