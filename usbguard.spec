@@ -7,7 +7,7 @@ Summary:	Software framework for implementing USB device authorization policies
 Summary(pl.UTF-8):	Szkielet programowy do implementowania polityk autoryzacji urządzeń USB
 Name:		usbguard
 Version:	1.1.4
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Applications/System
 #Source0Download: https://github.com/USBGuard/usbguard/releases
